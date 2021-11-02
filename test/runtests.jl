@@ -4,7 +4,7 @@ using Test
 @testset "SearchSortedNearest.jl" begin
     @testset "Range" begin
         for rng in [1:10, (1:10) .+ 0.4, (1:10) .+ 0.5, 1.0:10.0], item in rng 
-            searchsortednearest(rng, item) == round(Int, item)
+            searchsortednearest(rng, item) == floor(Int, item)
         end
         searchsortednearest(1:10, 0) == 1
         searchsortednearest(1:10, 11) == 10
