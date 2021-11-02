@@ -22,7 +22,7 @@ function searchsortednearest(a, x; by=identity, lt=isless, rev=false)
     idx > length(a) && return length(a)
     a[idx] == x && return idx 
     idx = lt(abs(by(a[idx]) - by(x)), abs(by(a[idx - 1]) - by(x))) ? idx : idx - 1
-    return rev ? length(x) - idx + 1 : idx
+    return rev ? length(a) - idx + 1 : idx
 end
 
 end
