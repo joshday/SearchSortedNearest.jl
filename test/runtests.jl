@@ -12,7 +12,8 @@ using Test
         searchsortednearest(1:10, 11, rev=true) == 1
     end
     @testset "By" begin 
-        rng = map(x -> x => rand(), 1:10)
+        struct StructWithoutOrder end
+        rng = map(x -> x => StructWithoutOrder(), 1:10)
         for item in rng 
             searchsortednearest(rng, item, by=first) == first(item)
             searchsortednearest(rng, item, by=first, rev=true) == 11 - first(item)
