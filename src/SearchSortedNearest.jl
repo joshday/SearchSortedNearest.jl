@@ -17,7 +17,7 @@ Ties go to the smallest index.
     searchsortednearest(1:10, 1.9) == 2
 """
 function searchsortednearest(a, x; by=identity, lt=isless, rev=false)
-    idx = searchsortedfirst(a, x; by, lt)
+    idx = searchsortedfirst(a, x; by, lt, rev)
     if idx == 1
     elseif idx > length(a)
         idx = length(a)
@@ -25,7 +25,7 @@ function searchsortednearest(a, x; by=identity, lt=isless, rev=false)
     else
         idx = lt(abs(by(a[idx]) - by(x)), abs(by(a[idx - 1]) - by(x))) ? idx : idx - 1
     end
-    return rev ? length(a) - idx + 1 : idx
+    return idx
 end
 
 end

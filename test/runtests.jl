@@ -8,15 +8,15 @@ using Test
         end
         @test searchsortednearest(1:10, 0) == 1
         @test searchsortednearest(1:10, 11) == 10
-        @test searchsortednearest(1:10, 0, rev=true) == 10
-        @test searchsortednearest(1:10, 11, rev=true) == 1
+        @test searchsortednearest(10:-1:1, 0, rev=true) == 10
+        @test searchsortednearest(10:-1:1, 11, rev=true) == 1
     end
     @testset "by" begin 
         struct StructWithoutOrder end
         rng = map(x -> x => StructWithoutOrder(), 1:10)
         for item in rng 
             @test searchsortednearest(rng, item, by=first) == first(item)
-            @test searchsortednearest(rng, item, by=first, rev=true) == 11 - first(item)
+            @test searchsortednearest(reverse(rng), item, by=first, rev=true) == 11 - first(item)
         end
         a = ["a", "aa", "aaa", "aaaa"]
         x = "aaa"
@@ -32,7 +32,7 @@ using Test
         for _ in 1:100
             a, x = sort!(randn(100)), randn()
             @test searchsortednearest(a, x) == argmin(abs.(a .- x))
-            @test searchsortednearest(a, x, rev=true) == argmin(abs.(reverse(a) .- x))
+            @test searchsortednearest(reverse(a), x, rev=true) == argmin(abs.(reverse(a) .- x))
         end
     end
 end
