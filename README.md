@@ -1,3 +1,5 @@
+[![Build status](https://github.com/joshday/SearchSortedNearest.jl/workflows/CI/badge.svg)](https://github.com/joshday/SearchSortedNearest.jl/actions?query=workflow%3ACI+branch%3Amaster)
+
 # SearchSortedNearest
 
 
