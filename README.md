@@ -23,4 +23,4 @@ searchsortednearest(1:10, 1.9) == 2
 
 ## Attribution
 
-[Credit goes to `@traktofon`](https://discourse.julialang.org/t/findnearest-function/4143/5) on the Julia Discourse.
+[This implementation is based on code provided by `@traktofon`](https://discourse.julialang.org/t/findnearest-function/4143/5) on the Julia Discourse.
