@@ -23,7 +23,7 @@ using Test
         @test searchsortedfirst(a, x, by=length) == 3
     end
     @testset "lt" begin 
-        a = 1:10
+        a = 1:10.0
         x = NaN
         @test searchsortednearest(a, x, lt=isless) == 10
         @test searchsortednearest(a, x, lt=<) == 1
