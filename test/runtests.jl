@@ -25,7 +25,7 @@ using Test
     @testset "lt" begin 
         a = 1:10.0
         x = NaN
-        @test searchsortednearest(a, x, lt=isless) == 10
+        VERSION > v"1.5.4" && @test searchsortednearest(a, x, lt=isless) == 10
         @test searchsortednearest(a, x, lt=<) == 1
     end
     @testset "random" begin
