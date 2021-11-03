@@ -17,15 +17,15 @@ Ties go to the smallest index.
     searchsortednearest(1:10, 1.9) == 2
 """
 function searchsortednearest(a, x; by=identity, lt=isless, rev=false)
-    idx = searchsortedfirst(a, x; by, lt, rev)
-    if idx == 1
-    elseif idx > length(a)
-        idx = length(a)
-    elseif a[idx] == x 
+    i = searchsortedfirst(a, x; by, lt, rev)
+    if i == 1
+    elseif i > length(a)
+        i = length(a)
+    elseif a[i] == x 
     else
-        idx = lt(abs(by(a[idx]) - by(x)), abs(by(a[idx - 1]) - by(x))) ? idx : idx - 1
+        i = lt(abs(by(a[i]) - by(x)), abs(by(a[i - 1]) - by(x))) ? i : i - 1
     end
-    return idx
+    return i
 end
 
 end
