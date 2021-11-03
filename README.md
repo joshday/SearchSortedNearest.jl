@@ -6,10 +6,10 @@
 This package provides a single function:
 
 ```julia
-searchsortednearest(a, x; by=<transform>, lt=<comparison>, rev=false)
+searchsortednearest(a, x; by=<transform>, lt=<comparison>, distance=(a,b)->abs(a-b), rev=false)
 ```
 
-Find the index of (sorted) collection `a` that is nearest (smallest absolute difference) to `x`.  
+Find the index of (sorted) collection `a` that has the smallest `distance` to `x`.  
 Ties go to the smallest index.
 
 ## Examples 

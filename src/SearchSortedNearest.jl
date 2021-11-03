@@ -4,9 +4,9 @@ export searchsortednearest
 
 # from: https://discourse.julialang.org/t/findnearest-function/4143/5
 """
-    searchsortednearest(a, x; by=<transform>, lt=<comparison>, rev=false)
+    searchsortednearest(a, x; by=<transform>, lt=<comparison>, distance=(a,b) -> abs(a-b), rev=false)
 
-Find the index of (sorted) collection `a` that is nearest (smallest absolute difference) to `x`.  
+Find the index of (sorted) collection `a` that has the smallest `distance` to `x`.  
 Ties go to the smallest index.
 
 # Examples 
@@ -16,14 +16,14 @@ Ties go to the smallest index.
     searchsortednearest(1:10, 1.1) == 1
     searchsortednearest(1:10, 1.9) == 2
 """
-function searchsortednearest(a, x; by=identity, lt=isless, rev=false)
+function searchsortednearest(a, x; by=identity, lt=isless, rev=false, distance=(a,b)->abs(a-b))
     i = searchsortedfirst(a, x; by, lt, rev)
     if i == 1
     elseif i > length(a)
         i = length(a)
     elseif a[i] == x 
     else
-        i = lt(abs(by(a[i]) - by(x)), abs(by(a[i - 1]) - by(x))) ? i : i - 1
+        i = lt(distance(by(a[i]), by(x)), distance(by(a[i - 1]), by(x))) ? i : i - 1
     end
     return i
 end

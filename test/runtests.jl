@@ -28,6 +28,11 @@ using Test
         VERSION > v"1.5.4" && @test searchsortednearest(a, x, lt=isless) == 10
         @test searchsortednearest(a, x, lt=<) == 1
     end
+    @testset "distance" begin 
+        a = ["abc", "abd", "abe", "abz"]
+        x = "abf"
+        @test searchsortednearest(a, x, distance=(a,b) -> sum(map(-, a, b))) == 3
+    end
     @testset "random" begin
         for _ in 1:100
             a, x = sort!(randn(100)), randn()
