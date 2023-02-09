@@ -40,4 +40,34 @@ using Test
             @test searchsortednearest(reverse(a), x, rev=true) == argmin(abs.(reverse(a) .- x))
         end
     end
+    @testset "searchsortedprev" begin
+        @testset "range" begin
+            A = sort(rand(-100:0.25:100, 20)); 
+            RNG=rand(-100:0.25:100, 20)
+            # @info "set = $A"
+            for rng in RNG
+                ind_method1 = searchsortedprevious(A, rng)
+                ind_method2 = searchsortedfirst(rng .<= A, true) - 1
+                # @info "test" rng
+                @test ind_method1 == ind_method2
+            end
+        end
+        @testset "groundtruth" begin
+            @test all(searchsortedprevious.([collect(0.25:1:10.25)], 1:10) .== collect(1:10))
+        end
+    end
+    @testset "searchsortednext" begin
+        @testset "range" begin
+            A = sort(rand(-100:0.25:100, 20)); 
+            RNG=rand(-100:0.25:100, 20);
+            for rng in RNG
+                ind_method1 = searchsortednext(A, rng)
+                ind_method2 = searchsortedfirst(rng .<= A, true)
+                @test ind_method1 == ind_method2
+            end
+        end
+        @testset "groundtruth" begin
+            @test all(searchsortednext.([collect(0.75:1:10.75)], 1:10) .== (1 .+ collect(1:10)))
+        end
+    end
 end
