@@ -1,6 +1,6 @@
 module SearchSortedNearest
 
-export searchsortednearest
+export searchsortednearest, searchsortednext, searchsortedprevious
 
 # from: https://discourse.julialang.org/t/findnearest-function/4143/5
 """
@@ -24,6 +24,28 @@ function searchsortednearest(a, x; by=identity, lt=isless, rev=false, distance=(
     elseif a[i] == x 
     else
         i = lt(distance(by(a[i]), by(x)), distance(by(a[i - 1]), by(x))) ? i : i - 1
+    end
+    return i
+end
+
+function searchsortednext(a, x; by=identity, lt=isless, rev=false, distance=(a,b)->abs(a-b))
+    i = searchsortedfirst(a, x; by, lt, rev)
+    if i == 1
+    elseif i > length(a)
+        i = length(a)
+    else
+        i = i
+    end
+    return i
+end
+
+function searchsortedprevious(a, x; by=identity, lt=isless, rev=false, distance=(a,b)->abs(a-b))
+    i = searchsortedfirst(a, x; by, lt, rev)
+    if i == 1
+    elseif i > length(a)
+        i = length(a)
+    else
+        i = i - 1
     end
     return i
 end
