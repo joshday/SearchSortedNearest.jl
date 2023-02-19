@@ -48,7 +48,7 @@ using Test
             for rng in RNG
                 ind_method1 = searchsortedprevious(A, rng)
                 ind_method2 = searchsortedfirst(rng .<= A, true) - 1
-                ind_method2 = ind_method2 == 0 && rng !== A ? nothing : ind_method2
+                ind_method2 = ind_method2 == 0 && rng != A ? nothing : ind_method2
                 # @info "test" rng
                 @test ind_method1 == ind_method2
             end
