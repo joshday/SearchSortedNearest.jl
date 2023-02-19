@@ -32,7 +32,7 @@ function searchsortednext(a, x; by=identity, lt=isless, rev=false, distance=(a,b
     i = searchsortedfirst(a, x; by, lt, rev)
     if i == 1
     elseif i > length(a)
-        i = length(a)
+        i = nothing
     else
         i = i
     end
@@ -42,6 +42,9 @@ end
 function searchsortedprevious(a, x; by=identity, lt=isless, rev=false, distance=(a,b)->abs(a-b))
     i = searchsortedfirst(a, x; by, lt, rev)
     if i == 1
+        if x < a[i]
+            i = nothing
+        end
     elseif i > length(a)
         i = length(a)
     else

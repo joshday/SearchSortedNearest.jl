@@ -47,7 +47,8 @@ using Test
             # @info "set = $A"
             for rng in RNG
                 ind_method1 = searchsortedprevious(A, rng)
-                ind_method2 = max(searchsortedfirst(rng .<= A, true) - 1, 1)
+                ind_method2 = searchsortedfirst(rng .<= A, true) - 1
+                ind_method2 = ind_method2 == 0 ? nothing : ind_method2
                 # @info "test" rng
                 @test ind_method1 == ind_method2
             end
@@ -62,7 +63,9 @@ using Test
             RNG=rand(-100:0.25:100, 20);
             for rng in RNG
                 ind_method1 = searchsortednext(A, rng)
-                ind_method2 = min(searchsortedfirst(rng .<= A, true),length(A))
+                ind_method2 = searchsortedfirst(rng .<= A, true)
+                ind_method2 = ind_method2 > length(A) ? nothing :
+                              ind_method2
                 @test ind_method1 == ind_method2
             end
         end
