@@ -1,7 +1,7 @@
 name = "SearchSortedNearest"
 uuid = "e8f3a9d7-1e19-435f-864b-2435d14e4e17"
 authors = ["joshday <emailjoshday@gmail.com> and contributors"]
-version = "0.1.0"
+version = "0.1.1"
 
 [compat]
 julia = "1"
