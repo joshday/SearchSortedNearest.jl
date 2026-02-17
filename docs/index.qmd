@@ -1,0 +1,23 @@
+---
+title: "SearchSortedNearest.jl"
+engine: julia
+---
+
+Welcome to the documentation for **SearchSortedNearest.jl**.
+
+## Overview
+
+SearchSortedNearest.jl is a Julia package that ...
+
+## Installation
+
+```julia
+using Pkg
+Pkg.add("SearchSortedNearest")
+```
+
+## Quickstart
+
+```{julia}
+println("Hello, World!")
+```
